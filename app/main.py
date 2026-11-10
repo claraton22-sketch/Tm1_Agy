@@ -1,5 +1,3 @@
-from typing import Optional
-
 from fastapi import FastAPI
 from fastapi.responses import JSONResponse
 
@@ -32,3 +30,9 @@ def orchestrate(question_request: OrchestrationRequest) -> OrchestrationResponse
 @app.exception_handler(Exception)
 async def handler(_: Exception):
     return JSONResponse(status_code=500, content={"detail": "Unexpected server error"})
+
+
+if __name__ == "__main__":
+    import uvicorn
+
+    uvicorn.run("app.main:app", host="127.0.0.1", port=8000, reload=True)
