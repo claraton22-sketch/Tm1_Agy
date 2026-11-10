@@ -1,5 +1,7 @@
 from typing import Dict, Optional
 
+from app.tm1_templates import TM1TemplateFactory
+
 
 def classify_question(question: str) -> str:
     q = question.lower().strip()
@@ -72,12 +74,13 @@ def orchestrate_request(question: str) -> Dict[str, Optional[str]]:
     if classification == "code_generation":
         summary = "The request is to generate TM1 code."
         reasoning = "The user asked for code or automation, so the system should generate a TM1 artifact or procedural script."
+        generated_code = TM1TemplateFactory.load_process_template("LoadData")
         return {
             "classification": classification,
             "output_type": "tm1_process",
             "summary": summary,
             "reasoning": reasoning,
-            "generated_code": "TM1 process placeholder",
+            "generated_code": generated_code,
             "impact_summary": None,
             "recommended_approach": None,
         }
