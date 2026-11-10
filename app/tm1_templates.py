@@ -1,10 +1,3 @@
-from app.tm1_templates import TM1TemplateFactory
-
-
-class TemplateFactory(TMX1TemplateFactory):
-    pass
-
-
 class TM1TemplateFactory:
     """Lightweight template factory for starter TM1 generation."""
 
